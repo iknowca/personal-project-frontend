@@ -1,10 +1,15 @@
 <template>
-<v-container></v-container>
+<v-container>
+  <LoginComp></LoginComp>
+</v-container>
 </template>
 
 <script>
+import LoginComp from "@/components/LoginComp.vue";
+
 export default {
-  name: "LoginView"
+  name: "LoginView",
+  components: {LoginComp}
 }
 </script>
 

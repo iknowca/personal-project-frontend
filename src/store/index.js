@@ -1,14 +1,8 @@
 import { createStore } from 'vuex'
+import AccountModule from "@/store/account/AccountModule";
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    AccountModule: AccountModule
   }
 })
