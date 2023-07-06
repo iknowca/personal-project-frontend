@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container  fluid class="pa-0">
     <map-comp v-if="isLogin"></map-comp>
   </v-container>
 </template>
