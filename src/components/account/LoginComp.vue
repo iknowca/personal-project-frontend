@@ -44,8 +44,8 @@ export default {
   components: {},
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'test3@test.com',
+      password: 'test3',
     }
   },
   methods: {

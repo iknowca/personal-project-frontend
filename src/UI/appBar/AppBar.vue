@@ -39,13 +39,18 @@ export default {
     },
     logout() {
       this.SET_LOGIN_STATE(false)
-      console.log(this.isLogin)
+      localStorage.removeItem('userToken')
       router.push('/')
     },
     ...mapMutations(AccountModule, ['SET_LOGIN_STATE'])
   },
   computed: {
     ...mapState(AccountModule, ['isLogin'])
+  },
+  created() {
+    if(localStorage.getItem('userToken')) {
+      this.SET_LOGIN_STATE(true)
+    }
   }
 }
 </script>
