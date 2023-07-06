@@ -1,18 +1,23 @@
 <template>
-  <HelloWorld />
+  <v-container>
+    <map-comp v-if="isLogin"></map-comp>
+  </v-container>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import MapComp from "@/components/map/MapComp.vue";
+import {mapState} from "vuex";
 
-// Components
-import HelloWorld from '../components/HelloWorld.vue';
-
+const AccountModule = 'AccountModule'
 export default defineComponent({
   name: 'HomeView',
 
   components: {
-    HelloWorld,
+    MapComp
   },
+  computed: {
+    ...mapState(AccountModule, ['isLogin'])
+  }
 });
 </script>
