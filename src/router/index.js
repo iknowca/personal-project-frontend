@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AccountRoutes from "@/router/account/accountRoutes";
+import BoardRoutes from "@/router/board/boadrRoutes";
 
 const routes = [
   {
@@ -9,6 +10,7 @@ const routes = [
     component: HomeView
   },
   ...AccountRoutes,
+  ...BoardRoutes
 ]
 
 const router = createRouter({

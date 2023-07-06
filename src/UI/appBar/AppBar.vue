@@ -12,7 +12,14 @@
       JOIN
     </v-btn>
     </div>
+
     <div v-else>
+      <v-btn @click="goToWriteView">
+        WRITE
+      </v-btn>
+      <v-btn>
+        mypage
+      </v-btn>
       <v-btn @click="logout">
         LOGOUT
       </v-btn>
@@ -41,6 +48,9 @@ export default {
       this.SET_LOGIN_STATE(false)
       localStorage.removeItem('userToken')
       router.push('/')
+    },
+    goToWriteView() {
+      router.push('/write-view')
     },
     ...mapMutations(AccountModule, ['SET_LOGIN_STATE'])
   },
