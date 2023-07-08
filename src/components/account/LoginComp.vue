@@ -14,6 +14,7 @@
             <v-text-field type="text" placeholder="example@naver.com" label="email" v-model="email"></v-text-field>
             <v-text-field type="password" placeholder="알파벳 소문자, 대문자, 숫자, 특수문자를 모두 포함하세요." label="password"
                           v-model="password"></v-text-field>
+              <p style="color: red">{{message}}</p>
           </v-container>
           <v-container>
             <v-row>
@@ -46,6 +47,7 @@ export default {
     return {
       email: 'test3@test.com',
       password: 'test3',
+      message: ''
     }
   },
   methods: {
@@ -54,7 +56,13 @@ export default {
     },
     login() {
       this.requestLogin({email: this.email, password:this.password})
-        .then(()=> router.push('/'))
+        .then((res)=> {
+          if(res==0) {
+            router.push('/')
+          } else {
+            this.message = 'wrong email or password';
+          }
+        })
     },
     ...mapActions(AccountModule, ['requestLogin'])
   }
