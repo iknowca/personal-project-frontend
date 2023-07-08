@@ -1,4 +1,4 @@
-import axiosSpring from "@/utility/axiosInst";
+import axiosSpring from "@/utility/axios/axiosInst";
 import {SET_LOGIN_STATE} from "@/store/account/mutation_types";
 
 export default {

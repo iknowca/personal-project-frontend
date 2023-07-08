@@ -1,3 +1,4 @@
 export default {
-  boards: []
+  boards: [],
+  board: {}
 }

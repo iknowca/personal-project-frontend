@@ -1,5 +1,5 @@
-import axiosSpring from "@/utility/axiosInst";
-import {SET_BOARDS} from "@/store/board/mutation_types";
+import axiosSpring from "@/utility/axios/axiosInst";
+import {SET_BOARD, SET_BOARDS} from "@/store/board/mutation_types";
 
 export default {
   requestPostBoard(context, payload) {
@@ -12,6 +12,12 @@ export default {
         context.commit(SET_BOARDS, res.data)
       })
       .catch(()=>alert('can not read boards list'))
-
+  },
+  requestGetBoard(context, payload) {
+    axiosSpring.get('/board/'+payload)
+      .then((res)=> {
+        context.commit(SET_BOARD, res.data)
+      })
+      .catch(()=>alert('can not read board:' + payload))
   }
 }
