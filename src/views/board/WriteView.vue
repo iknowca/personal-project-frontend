@@ -31,11 +31,11 @@ export default {
   },
   methods: {
     submit() {
-      this.requestPutBoard({userToken: localStorage.getItem('userToken'),
+      this.requestPostBoard({userToken: localStorage.getItem('userToken'),
       title: this.title,
       stringContent: this.stringContent})
     },
-    ...mapActions(BoardModule, ['requestPutBoard']),
+    ...mapActions(BoardModule, ['requestPostBoard']),
     goToHome() {
       router.push('/')
     }
