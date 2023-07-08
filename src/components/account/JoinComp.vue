@@ -14,6 +14,7 @@
             <v-text-field type="text" label="email" v-model="email"></v-text-field>
             <v-text-field type="password" label="password"
                           v-model="password"></v-text-field>
+              <p style="color: red">{{this.message}}</p>
           </v-container>
           <v-container>
             <v-row>
@@ -46,13 +47,20 @@ export default {
   data() {
     return {
       password:'',
-      email:''
+      email:'',
+      message: '',
     }
   },
   methods: {
     join(){
       this.requestJoin({email:this.email, password:this.password})
-        .then(()=>router.push('/'))
+        .then((res)=> {
+          if(res==0) {
+          router.push('/')
+        } else {
+            this.message='중복된 이메일입니다.'
+          }
+        })
     },
     goToHome() {
       router.push('/')

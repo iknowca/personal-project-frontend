@@ -17,8 +17,12 @@ export default {
   requestJoin(context, payload) {
     return axiosSpring.post("/account/sign-up", payload)
       .then((res) => {
-        localStorage.setItem('userToken', res.data.userToken)
-        context.commit(SET_LOGIN_STATE, true)
+        if(res.data.userToken) {
+          localStorage.setItem('userToken', res.data.userToken)
+          context.commit(SET_LOGIN_STATE, true)
+          return 0
+        }
+        return 1
       })
       .catch(()=>console.log('error'))
   }
