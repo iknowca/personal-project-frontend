@@ -1,7 +1,6 @@
 export const calcDiffTime = function (createdTime) {
   let timeDiff = new Date() - new Date(createdTime)
   let hourDiff = Math.floor(timeDiff/(1000*60*60))
-  console.log((0<hourDiff && hourDiff <24))
   if(0<hourDiff  && hourDiff<24) {
     return hourDiff + ' times ago'
   } else if(hourDiff<=0) {
