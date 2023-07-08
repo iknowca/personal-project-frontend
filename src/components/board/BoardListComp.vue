@@ -1,6 +1,8 @@
 <script>
 import {defineComponent} from 'vue'
 import {mapState} from "vuex";
+import router from "@/router";
+import {calcDiffTime} from "@/utility/dateCalc/dateCalc";
 
 const BoardModule = 'BoardModule'
 export default defineComponent({
@@ -14,24 +16,10 @@ export default defineComponent({
     ...mapState(BoardModule, ['boards']),
   },
     methods: {
-      calcDiffTime(createdTime) {
-          let timeDiff = this.now - new Date(createdTime)
-          let hourDiff = Math.floor(timeDiff/(1000*60*60))
-          console.log((0<hourDiff && hourDiff <24))
-          if(0<hourDiff  && hourDiff<24) {
-              return hourDiff + ' times ago'
-          } else if(hourDiff<=0) {
-              let minDiff = Math.floor(timeDiff/(1000*60))
-              if(minDiff>0) {
-                  return minDiff + ' minutes ago';
-              } else {
-                  return 'just before'
-              }
-          } else {
-              let dayDiff = Math.floor(timeDiff/(1000*60*60*24))
-              return dayDiff + ' days ago'
-          }
-      }
+        calcDiffTime,
+        readBoard(boardId) {
+          router.push({name: 'BoardView', params: {boardId: boardId}})
+        }
     }
 })
 </script>
@@ -44,7 +32,8 @@ export default defineComponent({
                 v-for="board in this.boards"
                 :key="board.id"
                 :title="board.title"
-        :subtitle="board.writer.nickName +' - '+ calcDiffTime(board.createdDate)">
+        :subtitle="board.writer.nickName +' - '+ calcDiffTime(board.createdDate)"
+        @click="readBoard(board.id)">
         </v-list-item>
     </v-list>
     </v-card>
