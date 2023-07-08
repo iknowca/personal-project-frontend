@@ -1,4 +1,6 @@
 import env from "../../../env";
+import {SET_CURRENT_LOCATION} from "@/store/map/mutation_types";
+
 export default {
   requestMap() {
     (g => {
@@ -25,5 +27,10 @@ export default {
       // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
       // Add other bootstrap parameters as needed, using camel case.
     });
+  },
+  getCurrentLocation(context) {
+    navigator.geolocation.watchPosition(position => {
+      (context.commit(SET_CURRENT_LOCATION, position.coords))
+    })
   }
 }

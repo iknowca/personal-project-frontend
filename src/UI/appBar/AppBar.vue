@@ -58,7 +58,7 @@ export default {
     goBoardListView() {
       router.push('/board-list-view')
     },
-    ...mapMutations(AccountModule, ['SET_LOGIN_STATE'])
+    ...mapMutations(AccountModule, ['SET_LOGIN_STATE']),
   },
   computed: {
     ...mapState(AccountModule, ['isLogin'])
