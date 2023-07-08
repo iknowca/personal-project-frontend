@@ -3,6 +3,9 @@
     <v-btn @click="goHome">
       FINE
     </v-btn>
+      <v-btn @click="goBoardListView">
+        BOARD
+      </v-btn>
 <v-spacer></v-spacer>
     <div v-if="!isLogin">
     <v-btn @click="tryLogin">
@@ -18,7 +21,7 @@
         WRITE
       </v-btn>
       <v-btn>
-        mypage
+        mypagell
       </v-btn>
       <v-btn @click="logout">
         LOGOUT
@@ -51,6 +54,9 @@ export default {
     },
     goToWriteView() {
       router.push('/write-view')
+    },
+    goBoardListView() {
+      router.push('/board-list-view')
     },
     ...mapMutations(AccountModule, ['SET_LOGIN_STATE'])
   },
