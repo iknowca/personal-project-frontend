@@ -28,9 +28,18 @@ export default {
       // Add other bootstrap parameters as needed, using camel case.
     });
   },
-  getCurrentLocation(context) {
-    navigator.geolocation.watchPosition(position => {
-      (context.commit(SET_CURRENT_LOCATION, position.coords))
-    })
+  getCurrentLocation(context, pos) {
+
+      context.commit(SET_CURRENT_LOCATION, pos)
+      // eslint-disable-next-line no-undef
+      let geocoder = new google.maps.Geocoder();
+      console.log(geocoder)
+      geocoder.geocode({location: pos})
+        .then((res)=>{
+          console.log(res)
+        })
+        .catch(()=>{console.log('geocode error')})
+      return pos
+
   }
 }

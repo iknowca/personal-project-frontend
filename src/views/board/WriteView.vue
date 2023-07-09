@@ -1,8 +1,10 @@
 <template>
   <v-container>
-    <v-card>
+    <v-card class="pa-7">
+        <v-select style="width: 200px" :items="area">
+        </v-select>
       <v-text-field label="title" v-model="title"></v-text-field>
-      <v-text-field label="content" v-model="stringContent"></v-text-field>
+      <v-textarea label="content" v-model="stringContent"></v-textarea>
       <v-container>
         <v-row>
           <v-col cols="4"></v-col>
@@ -27,6 +29,7 @@ export default {
     return {
       title: '',
       stringContent: '',
+      area: ['current area', 'home area', 'working area']
     }
   },
   methods: {

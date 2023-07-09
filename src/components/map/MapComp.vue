@@ -45,8 +45,8 @@ export default {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             }
-            console.log(pos)
-            this.map.setCenter(pos)
+              this.map.setCenter(pos)
+            this.getCurrentLocation(pos)
           }
         )
 
