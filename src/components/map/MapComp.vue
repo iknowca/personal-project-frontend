@@ -27,30 +27,22 @@ export default {
       const {Map} = await google.maps.importLibrary("maps");
       this.map = new Map(document.getElementById('map'), {
         center: {lat: this.currentLocation.lat, lng: this.currentLocation.lng},
-        zoom: 17,
-        mapId: 'ff40b7d118b879c0',
-        disableDefaultUI: true
+          zoom: 17,
+          mapId: 'ff40b7d118b879c0',
+          disableDefaultUI: true
       })
 
-      const locationButton = document.createElement("button")
-      locationButton.textContent = "get Location";
-      locationButton.className = 'custom-map-control-button'
-      // eslint-disable-next-line no-undef
-      this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
-      locationButton.addEventListener("click", () => {
-
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            }
-              this.map.setCenter(pos)
-            this.getCurrentLocation(pos)
+        const locationButton = document.createElement("button")
+        locationButton.textContent = "get Location";
+        locationButton.className = 'custom-map-control-button'
+        // eslint-disable-next-line no-undef
+        this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
+        await locationButton.addEventListener("click",
+          () => {
+              this.getCurrentLocation(this.map)
           }
         )
 
-      })
 
     },
 
@@ -58,7 +50,7 @@ export default {
   },
   computed: {
     ...mapState(MapModule, ['currentLocation'])
-  }
+  },
 }
 </script>
 
