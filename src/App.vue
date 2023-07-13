@@ -25,4 +25,16 @@ export default {
     ...mapActions(MapModule, ['requestMap'])
   }
 }
+
+
 </script>
+
+<style>
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+#app {
+    font-family:'bitbit';
+}
+</style>
