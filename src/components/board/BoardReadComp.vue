@@ -55,9 +55,14 @@ export default defineComponent({
                     </v-col>
                 </v-row>
             </v-card-subtitle>
-            <v-carousel cycle v-if="!board.boardContent?.imgPathList.length==0">
-                <v-carousel-item cover v-for="(img, i) in board.boardContent?.imgPathList" :key=i>
-                    <v-img :src="'https://vue-s3-test-37373.s3.ap-northeast-2.amazonaws.com/'+img.imgPath"></v-img>
+            <v-carousel
+
+              cycle progress show-arrows="hover"
+              v-if="!board.boardContent?.imgPathList.length==0"
+            >
+                <v-carousel-item
+                  v-for="(img, i) in board.boardContent?.imgPathList" :key=i>
+                    <v-img min-width="500px" :src="'https://vue-s3-test-37373.s3.ap-northeast-2.amazonaws.com/'+img.imgPath" style="aspect-ratio: auto"></v-img>
                 </v-carousel-item>
             </v-carousel>
 
