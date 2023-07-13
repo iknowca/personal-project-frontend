@@ -5,12 +5,12 @@
       </v-select>
       <v-text-field label="title" v-model="title"></v-text-field>
       <v-textarea label="content" v-model="stringContent"></v-textarea>
-      <v-file-input multiple v-model="files" @change="previewImage" chips/>
+      <v-file-input multiple v-model="files" @change="previewImage" chips accept="image/png, image/jpg, image/jpeg"/>
       <v-row><v-col v-for="(url, i) in previewImages" :key=i class="xs12 sm6 md4 lg3 xl2 xxl1"><v-img :src="url"></v-img></v-col></v-row>
       <v-container>
         <v-row>
           <v-col cols="4"></v-col>
-          <v-col cols="2" @click="goToHome"><v-btn>cancel</v-btn></v-col>
+          <v-col cols="2" @click="goToHome" class="center"><v-btn>cancel</v-btn></v-col>
           <v-col cols="2" @click="submit"><v-btn>submit</v-btn></v-col>
           <v-col cols="4"></v-col>
         </v-row>
@@ -20,10 +20,11 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 import router from "@/router";
 import AWS from 'aws-sdk'
 
+const AccountModule = "AccountModule"
 const BoardModule = 'BoardModule'
 
 export default {
@@ -45,7 +46,8 @@ export default {
     async submit() {
       const payload = {userToken: localStorage.getItem('userToken'),
         title: this.title,
-        stringContent: this.stringContent, files:this.files.map((file)=>file.name)}
+        stringContent: this.stringContent,
+        files:this.files.map((file)=>this.nickName+"-"+file.name)}
       this.s3FileUpload()
       await this.requestPostBoard(payload)
     },
@@ -57,7 +59,7 @@ export default {
       this.s3Config()
       for(let i=0; i<this.files.length; i++) {
         let file = this.files[i];
-        this.s3.upload({Key:file.name, Body: file, ACL:'public-read'}, (err) => {
+        this.s3.upload({Key:this.nickName+"-"+file.name, Body: file, ACL:'public-read'}, (err) => {
           if(err) {
             console.log(err)
             return alert("error: " + err)
@@ -82,6 +84,9 @@ export default {
     previewImage() {
       this.previewImages = this.files.map((file)=>URL.createObjectURL(file))
     }
+  },
+  computed: {
+    ...mapState(AccountModule, ["nickName"])
   }
 }
 </script>
