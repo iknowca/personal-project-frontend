@@ -12,6 +12,7 @@
           </div>
           <v-container style="width:320px;padding: 0">
             <v-text-field type="text" label="email" v-model="email"></v-text-field>
+            <v-text-field type="text" label="nickName" v-model="nickName"></v-text-field>
             <v-text-field type="password" label="password"
                           v-model="password"></v-text-field>
               <p style="color: red">{{this.message}}</p>
@@ -49,11 +50,12 @@ export default {
       password:'',
       email:'',
       message: '',
+      nickName: '',
     }
   },
   methods: {
     join(){
-      this.requestJoin({email:this.email, password:this.password})
+      this.requestJoin({email:this.email, password:this.password, nickName: this.nickName})
         .then((res)=> {
           if(res==0) {
           router.push('/')
