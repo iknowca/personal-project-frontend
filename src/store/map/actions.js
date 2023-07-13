@@ -20,7 +20,7 @@ export default {
           a.nonce = m.querySelector("script[nonce]")?.nonce || "";
           m.head.append(a)
         }));
-      d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+      d[l] ? console.warn(p + " only loads once. Ignoring:") : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
     })({
       key: env.api.MAP_API_KEY,
       v: "weekly",
