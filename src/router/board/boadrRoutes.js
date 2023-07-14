@@ -1,6 +1,7 @@
 import WriteView from "@/views/board/WriteView.vue";
 import BoardListView from "@/views/board/BoardListView.vue";
 import BoardView from "@/views/board/BoardView.vue";
+import BoardModifyView from "@/views/board/BoardModifyView.vue";
 
 const BoardRoutes = [
   {
@@ -17,6 +18,12 @@ const BoardRoutes = [
     path: '/board-view/:boardId',
     name: 'BoardView',
     component: BoardView,
+    props: true
+  },
+  {
+    path: '/board-modify-view/:boardId',
+    name: 'BoardModifyView',
+    component: BoardModifyView,
     props: true
   }
 

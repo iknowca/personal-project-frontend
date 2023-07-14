@@ -2,6 +2,7 @@
 import {defineComponent} from 'vue'
 import BoardReadComp from "@/components/board/BoardReadComp.vue";
 import {mapActions, mapState} from "vuex";
+import router from "@/router";
 
 const BoardModule = 'BoardModule'
 const AccountModule = 'AccountModule'
@@ -10,7 +11,10 @@ export default defineComponent({
   components: {BoardReadComp},
   props: ['boardId'],
   methods: {
-    ...mapActions(BoardModule, ['requestGetBoard'])
+    ...mapActions(BoardModule, ['requestGetBoard']),
+    goToModify() {
+      router.push({name:'BoardModifyView', boardId:this.boardId})
+    }
   },
   beforeMount() {
     this.requestGetBoard(this.boardId)
@@ -26,7 +30,7 @@ export default defineComponent({
   <div>
     <board-read-comp :board="board"></board-read-comp>
     <div v-if="board.board?.writer.id === accountId">
-      <v-btn>modify</v-btn>
+      <v-btn @click="goToModify">modify</v-btn>
       <v-btn>delete</v-btn>
     </div>
   </div>
