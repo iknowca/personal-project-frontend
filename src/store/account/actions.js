@@ -1,5 +1,5 @@
 import axiosSpring from "@/utility/axios/axiosInst";
-import {SET_LOGIN_STATE, SET_NICKNAME, SET_ACCOUNT_ID} from "@/store/account/mutation_types";
+import {SET_LOGIN_STATE, SET_NICKNAME, SET_ACCOUNT_ID, SET_USERTOKEN} from "@/store/account/mutation_types";
 
 export default {
   requestLogin(context, payload) {
@@ -7,10 +7,10 @@ export default {
       .catch(()=>console.log('error'))
       .then((res)=>{
         if(res.data.userToken) {
-          localStorage.setItem('userToken', res.data.userToken)
           context.commit(SET_LOGIN_STATE, true)
           context.commit(SET_NICKNAME, res.data.nickName)
           context.commit(SET_ACCOUNT_ID, res.data.accountId)
+          context.commit(SET_USERTOKEN, res.data.userToken)
           return 0
         }
         return 1
