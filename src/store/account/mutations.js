@@ -1,5 +1,6 @@
 import {
-  SET_LOGIN_STATE, SET_NICKNAME
+  SET_ACCOUNT_ID,
+  SET_LOGIN_STATE, SET_NICKNAME,
 } from "./mutation_types";
 
 export default {
@@ -8,5 +9,8 @@ export default {
   },
   [SET_NICKNAME](state, receivedData) {
     state.nickName = receivedData
+  },
+  [SET_ACCOUNT_ID](state, receivedData) {
+    state.accountId = receivedData
   }
 }
