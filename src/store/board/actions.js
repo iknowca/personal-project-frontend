@@ -22,5 +22,12 @@ export default {
         context.commit(SET_BOARD, res.data)
       })
       .catch(()=>alert('can not read board:' + payload))
+  },
+  requestPutBoard(context, payload) {
+    return axiosSpring.put('/board', payload)
+      .then((res) => {
+        return res.data
+      })
+      .catch(()=> alert('can not modify board:'))
   }
 }

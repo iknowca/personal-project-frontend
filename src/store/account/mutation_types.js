@@ -1,3 +1,4 @@
 export const SET_LOGIN_STATE = 'SET_LOGIN_STATE'
 export const SET_NICKNAME = 'SET_NICKNAME'
 export const SET_ACCOUNT_ID = 'SET_ACCOUNT_ID'
+export const SET_USERTOKEN = "SET_USERTOKEN"
