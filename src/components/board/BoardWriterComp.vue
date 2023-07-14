@@ -45,7 +45,7 @@ export default {
   methods: {
     async submit() {
       const payload = {
-        userToken: localStorage.getItem('userToken'),
+        userToken: this.userToken,
         title: this.title,
         stringContent: this.stringContent,
         files: this.files.map((file) => this.nickName + "-" + file.name)
@@ -90,7 +90,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(AccountModule, ["nickName"])
+    ...mapState(AccountModule, ["nickName", "userToken"])
   }
 }
 </script>
