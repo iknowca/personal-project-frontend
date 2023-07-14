@@ -2,8 +2,11 @@ import axiosSpring from "@/utility/axios/axiosInst";
 import {SET_BOARD, SET_BOARDS} from "@/store/board/mutation_types";
 
 export default {
-  requestPostBoard(context, payload) {
-    axiosSpring.post('/board', payload)
+  async requestPostBoard(context, payload) {
+    return await axiosSpring.post('/board', payload)
+      .then(res => {
+        return res.data
+      })
       .catch(()=>alert(payload))
   },
   requestBoardList(context) {

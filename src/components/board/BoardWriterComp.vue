@@ -44,12 +44,16 @@ export default {
   },
   methods: {
     async submit() {
-      const payload = {userToken: localStorage.getItem('userToken'),
+      const payload = {
+        userToken: localStorage.getItem('userToken'),
         title: this.title,
         stringContent: this.stringContent,
-        files:this.files.map((file)=>this.nickName+"-"+file.name)}
+        files: this.files.map((file) => this.nickName + "-" + file.name)
+      }
       this.s3FileUpload()
-      await this.requestPostBoard(payload)
+      const boardId = await this.requestPostBoard(payload)
+      router.push({name: 'BoardView', params: {boardId: boardId}})
+
     },
     ...mapActions(BoardModule, ['requestPostBoard']),
     goToHome() {
