@@ -27,5 +27,11 @@ export default {
         return 1
       })
       .catch(()=>console.log('error'))
+  },
+  setAccountInfo(context, payload) {
+    context.commit(SET_LOGIN_STATE, true)
+    context.commit(SET_NICKNAME, payload.data.nickName)
+    context.commit(SET_ACCOUNT_ID, payload.data.accountId)
+    context.commit(SET_USERTOKEN, payload.data.userToken)
   }
 }
