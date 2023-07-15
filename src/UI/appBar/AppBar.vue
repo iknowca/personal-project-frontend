@@ -8,9 +8,6 @@
       </v-btn>
 <v-spacer></v-spacer>
     <div v-if="!isLogin">
-    <v-btn @click="tryLogin">
-      LOGIN
-    </v-btn>
     <v-btn @click="tryJoin">
       JOIN
     </v-btn>
