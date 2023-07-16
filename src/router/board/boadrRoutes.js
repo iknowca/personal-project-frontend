@@ -2,6 +2,7 @@ import WriteView from "@/views/board/WriteView.vue";
 import BoardListView from "@/views/board/BoardListView.vue";
 import BoardView from "@/views/board/BoardView.vue";
 import BoardModifyView from "@/views/board/BoardModifyView.vue";
+import UserBoardListView from "@/views/board/UserBoardListView.vue";
 
 const BoardRoutes = [
   {
@@ -24,6 +25,12 @@ const BoardRoutes = [
     path: '/board-modify-view/:boardId',
     name: 'BoardModifyView',
     component: BoardModifyView,
+    props: true
+  },
+  {
+    path: '/user-board-list-view/:accountId',
+    name: 'UserBoardListView',
+    component: UserBoardListView,
     props: true
   }
 
