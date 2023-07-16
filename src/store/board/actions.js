@@ -1,6 +1,5 @@
 import axiosSpring from "@/utility/axios/axiosInst";
 import {SET_BOARD, SET_BOARDS} from "@/store/board/mutation_types";
-
 export default {
   async requestPostBoard(context, payload) {
     return await axiosSpring.post('/board', payload)
@@ -29,5 +28,9 @@ export default {
         return res.data
       })
       .catch(()=> alert('can not modify board:'))
+  },
+  requestDeleteBoard(context, boardId) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.delete('/board', {params: {boardId: boardId}, headers: {Authorization: userToken}})
   }
 }

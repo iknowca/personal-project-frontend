@@ -11,9 +11,21 @@ export default defineComponent({
   components: {BoardReadComp},
   props: ['boardId'],
   methods: {
-    ...mapActions(BoardModule, ['requestGetBoard']),
+    ...mapActions(BoardModule, ['requestGetBoard', 'requestDeleteBoard']),
     goToModify() {
       router.push({name:'BoardModifyView', boardId:this.boardId})
+    },
+    requestDelete() {
+      this.requestDeleteBoard(this.boardId)
+        .then(()=> {
+          router.push("/board-list-view")
+        })
+        .catch(()=>{
+          alert("can't delete board")
+        })
+    },
+    goToList() {
+      router.push('/board-list-view')
     }
   },
   beforeMount() {
@@ -30,8 +42,14 @@ export default defineComponent({
   <div>
     <board-read-comp :board="board"></board-read-comp>
     <div v-if="board.board?.writer.id === accountId">
+        <v-container>
+        <v-row>
+        <v-btn @click="goToList">list</v-btn>
+<v-spacer></v-spacer>
       <v-btn @click="goToModify">modify</v-btn>
-      <v-btn>delete</v-btn>
+      <v-btn @click="requestDelete">delete</v-btn>
+        </v-row>
+        </v-container>
     </div>
   </div>
 </template>

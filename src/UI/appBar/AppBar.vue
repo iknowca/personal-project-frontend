@@ -19,7 +19,7 @@
       <v-btn @click="goToWriteView">
         WRITE
       </v-btn>
-      <v-btn @click="goMyPage">
+      <v-btn>
           <v-avatar>
               <v-img :src="profileImg">
               </v-img>
