@@ -41,8 +41,13 @@ export default defineComponent({
 
 <template>
   <v-container>
-    <v-card>
+    <v-card class="pa-4">
       <v-card-text class="text-center">{{ board.board?.title }}</v-card-text>
+        <v-row>
+            <v-col cols="1">
+        <v-avatar><v-img :src="board.board?.writer.profileImage"></v-img></v-avatar>
+            </v-col>
+            <v-col style="padding-left: 0">
       <v-card-subtitle>{{ board.board?.writer.nickName }}</v-card-subtitle>
       <v-card-subtitle>
         <v-row>
@@ -53,6 +58,9 @@ export default defineComponent({
           </v-col>
         </v-row>
       </v-card-subtitle>
+            </v-col>
+        </v-row>
+
       <v-carousel
 
           cycle progress show-arrows="hover"
