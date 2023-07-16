@@ -15,10 +15,7 @@
     </v-btn>
     </div>
 
-    <div v-else>
-      <v-btn @click="goToWriteView">
-        WRITE
-      </v-btn>
+    <div v-else>s
       <v-btn>
           <v-avatar>
               <v-img :src="profileImg">
@@ -44,9 +41,6 @@ export default {
     goHome() {
       router.push('/')
     },
-    tryLogin() {
-      router.push('/login-view')
-    },
     tryJoin() {
       router.push('/join-view')
     },
@@ -55,9 +49,7 @@ export default {
       localStorage.removeItem('userToken')
       router.push('/')
     },
-    goToWriteView() {
-      router.push('/write-view')
-    },
+
     goBoardListView() {
       router.push('/board-list-view')
     },
