@@ -2,5 +2,6 @@ export default {
   isLogin: '',
   nickName: '',
   accountId: -1,
-  userToken: ''
+  userToken: '',
+  profileImgPath: ''
 }
