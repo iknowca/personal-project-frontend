@@ -20,5 +20,13 @@ export default {
       .then((res)=> {
         context.commit(SET_NICKNAME, res.data.nickName)
       })
+  },
+  logout(context) {
+    context.commit(SET_LOGIN_STATE, false)
+    context.commit(SET_NICKNAME, '')
+    context.commit(SET_ACCOUNT_ID, '')
+    context.commit(SET_USERTOKEN, '')
+    context.commit(SET_PROFILE_IMG,'')
+    localStorage.clear()
   }
 }

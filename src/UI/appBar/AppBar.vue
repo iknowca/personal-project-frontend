@@ -16,15 +16,12 @@
     </div>
 
     <div v-else>
-      <v-btn>
+      <v-btn @click="goToMyPage">
           <v-avatar>
               <v-img :src="profileImg">
               </v-img>
           </v-avatar>
           {{nickName}}
-      </v-btn>
-      <v-btn @click="logout">
-        LOGOUT
       </v-btn>
     </div>
   </v-app-bar>
@@ -44,14 +41,11 @@ export default {
     tryJoin() {
       router.push('/join-view')
     },
-    logout() {
-      this.SET_LOGIN_STATE(false)
-      localStorage.removeItem('userToken')
-      router.push('/')
-    },
-
     goBoardListView() {
       router.push('/board-list-view')
+    },
+    goToMyPage() {
+      router.push('/my-page-view')
     },
     ...mapMutations(AccountModule, ['SET_LOGIN_STATE']),
   },
