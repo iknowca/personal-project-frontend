@@ -7,6 +7,8 @@
         BOARD
       </v-btn>
 <v-spacer></v-spacer>
+
+
     <div v-if="!isLogin">
     <v-btn @click="tryJoin">
       JOIN
@@ -17,8 +19,12 @@
       <v-btn @click="goToWriteView">
         WRITE
       </v-btn>
-      <v-btn>
-        mypagell
+      <v-btn @click="goMyPage">
+          <v-avatar>
+              <v-img :src="profileImg">
+              </v-img>
+          </v-avatar>
+          {{nickName}}
       </v-btn>
       <v-btn @click="logout">
         LOGOUT
@@ -58,7 +64,7 @@ export default {
     ...mapMutations(AccountModule, ['SET_LOGIN_STATE']),
   },
   computed: {
-    ...mapState(AccountModule, ['isLogin'])
+    ...mapState(AccountModule, ['isLogin', 'nickName', 'profileImg'])
   },
   created() {
     if(localStorage.getItem('userToken')) {

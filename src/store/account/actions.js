@@ -14,7 +14,6 @@ export default {
     context.commit(SET_ACCOUNT_ID, payload.data.accountId)
     context.commit(SET_USERTOKEN, payload.data.userToken)
     context.commit(SET_PROFILE_IMG, payload.data.profileImgPath)
-    console.log(payload.data.profileImgPath)
   },
   requestSetNickNameAndEmail(context, payload) {
     return axiosSpring.post('/account/additional-value', payload, {headers: {Authorization: context.state.userToken}})
