@@ -15,7 +15,7 @@
     </v-btn>
     </div>
 
-    <div v-else>s
+    <div v-else>
       <v-btn>
           <v-avatar>
               <v-img :src="profileImg">
