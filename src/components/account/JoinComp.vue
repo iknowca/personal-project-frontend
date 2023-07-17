@@ -12,7 +12,7 @@
                     </div>
                     <v-container style="width:320px;padding: 0">
                         <v-card @click="joinWithKakao">
-                            <v-card-text class="text-center">KAKAO JOIN</v-card-text>
+                            <v-img :src="kakaoLoginImg"/>
                         </v-card>
                     </v-container>
                 </v-col>
@@ -40,6 +40,7 @@ export default {
   },
   data() {
     return {
+        kakaoLoginImg: require("@/assets/oauth/kakao_login_large_wide.png")
     }
   },
   methods: {
