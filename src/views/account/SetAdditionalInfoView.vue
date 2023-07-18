@@ -1,7 +1,8 @@
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent} from 'vue';
 import axiosSpring from "@/utility/axios/axiosInst";
 import {mapActions} from "vuex";
+import router from "@/router";
 const AccountModule = "AccountModule"
 export default defineComponent({
   name: "SetAdditionalInfoView",
@@ -46,8 +47,8 @@ export default defineComponent({
     },
       submit() {
         this.requestSetNickNameAndEmail({nickName: this.nickName, email: this.email})
-          .then((res)=> {
-              console.log(res.data)
+          .then(()=> {
+              router.push('/')
           })
       },
       ...mapActions(AccountModule, ['requestSetNickNameAndEmail']),
@@ -123,7 +124,7 @@ export default defineComponent({
             </v-text-field>
 
             <v-row>
-                <v-btn style="margin:auto;" :disabled="(!nickNameCheck)||(!emailCheck)" @click="requestSetNickNameAndEmail({email:email, nickName:nickName})"> submit</v-btn>
+                <v-btn style="margin:auto;" :disabled="(!nickNameCheck)||(!emailCheck)" @click="submit({email:email, nickName:nickName})"> submit</v-btn>
             </v-row>
         </v-card>
     </v-container>

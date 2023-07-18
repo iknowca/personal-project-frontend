@@ -17,8 +17,10 @@ export default {
   },
   requestSetNickNameAndEmail(context, payload) {
     return axiosSpring.post('/account/additional-value', payload, {headers: {Authorization: context.state.userToken}})
+      .catch(()=>alert('error'))
       .then((res)=> {
         context.commit(SET_NICKNAME, res.data.nickName)
+
       })
   },
   logout(context) {
