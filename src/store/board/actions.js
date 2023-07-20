@@ -31,7 +31,7 @@ export default {
   },
   requestDeleteBoard(context, boardId) {
     const {userToken} = context.rootState.AccountModule
-    return axiosSpring.delete('/board', {params: {boardId: boardId}, headers: {Authorization: userToken}})
+    return axiosSpring.delete('/board', {params: {boardId: boardId}, headers: {Authorization: userToken, boardId:boardId}})
   },
   requestBoardListByUserId(context, userId) {
     const {userToken} = context.rootState.AccountModule

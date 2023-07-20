@@ -1,24 +1,29 @@
 <template>
-    <v-container>
-        <v-card>
-            <v-row>
-                <v-col class="align-center">
+  <v-container>
+    <v-card>
+      <v-row>
+        <v-col class="align-center">
 
-                    <v-card-title class="text-center">
-                        Are you Fine?
-                    </v-card-title>
-                    <div class="d-flex">
-                        <v-img :src='require("@/assets/logo.png")' height="20vh"></v-img>
-                    </div>
-                    <v-container style="width:320px;padding: 0">
-                        <v-card @click="joinWithKakao">
-                            <v-img :src="kakaoLoginImg"/>
-                        </v-card>
-                    </v-container>
-                </v-col>
-            </v-row>
-        </v-card>
-    </v-container>
+          <v-card-title class="text-center">
+            Are you Fine?
+          </v-card-title>
+          <div class="d-flex">
+            <v-img :src='require("@/assets/logo.png")' height="20vh"></v-img>
+          </div>
+          <v-container style="width:320px;padding: 0">
+            <v-card @click="joinWithKakao" class="ma-4">
+              <v-img :src="kakaoLoginImg"/>
+            </v-card>
+          </v-container>
+          <v-container style="width:320px;padding: 0;">
+            <v-card @click="joinWithGoogle" class="ma-4">
+              <v-img :src="googleLoginImg"></v-img>
+            </v-card>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -40,7 +45,8 @@ export default {
   },
   data() {
     return {
-        kakaoLoginImg: require("@/assets/oauth/kakao_login_large_wide.png")
+      kakaoLoginImg: require("@/assets/oauth/kakao_login_large_wide.png"),
+      googleLoginImg: require("@/assets/oauth/btn_google_signin_light_normal_web@2x.png")
     }
   },
   methods: {
@@ -48,10 +54,14 @@ export default {
       router.push('/')
     },
     async joinWithKakao() {
-        window.location.href = await this.requestKakaoLoginToSpring()
+      window.location.href = await this.requestKakaoLoginToSpring()
     },
+    async joinWithGoogle() {
+      window.location.href = await this.requestGoogleLoginToSpring()
+    },
+
     ...mapActions('AccountModule', ["requestJoin"]),
-    ...mapActions('AuthModule', ["requestKakaoLoginToSpring"])
+    ...mapActions('AuthModule', ["requestKakaoLoginToSpring", "requestGoogleLoginToSpring"])
   },
 
 }
