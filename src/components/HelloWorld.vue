@@ -36,7 +36,7 @@ h1 {
 
 h1 span {
     position: relative;
-    top: 40vh;
+    top: 30vh;
     display: inline-block;
     animation: bounce .3s ease infinite alternate;
     font-family: 'Press Start 2P', cursive;
@@ -71,7 +71,7 @@ h1 span:nth-child(15) { animation-delay: 1.4s; }
 h1 span:nth-child(16) { animation-delay: 1.5s; }
 @keyframes bounce {
     100% {
-        top: 35vh;
+        top: 25vh;
         text-shadow: 0 1px 0 #CCC,
         0 2px 0 #CCC,
         0 3px 0 #CCC,
