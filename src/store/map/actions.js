@@ -1,5 +1,5 @@
 import env from "../../../env";
-import {SET_CURRENT_LOCATION} from "@/store/map/mutation_types";
+import {SET_CURRENT_AREA, SET_CURRENT_LOCATION} from "@/store/map/mutation_types";
 
 export default {
   requestMap() {
@@ -37,13 +37,20 @@ export default {
         }
         context.commit(SET_CURRENT_LOCATION, pos)
         // eslint-disable-next-line no-undef
-        let geocoder = new google.maps.Geocoder();
-        geocoder.geocode({location: pos})
+        let geocoder = new google.maps.Geocoder({result_type: "street_address"});
+        return geocoder.geocode({location: pos,  region: "kr", language: "ko"})
           .then((res)=>{
-            console.log(res)
+            const currentLocation = res.results.filter((cod)=>cod.types[0]==="street_address")[0].address_components.map((comp)=>comp.short_name)
+            const currentLocationObj = {dong: currentLocation[1], gu: currentLocation[2], si: currentLocation[3], d_o: currentLocation[4], lat: pos.lat, lng: pos.lng}
+            if(currentLocationObj.si === "서울특별시")
+            {
+              currentLocationObj.d_o = "경기도";
+            }
+            console.log(currentLocationObj)
+            context.commit(SET_CURRENT_AREA, currentLocationObj)
+            map.setCenter(pos)
           })
           .catch(()=>{console.log('geocode error')})
-        map.setCenter(pos)
 
       }, ()=>alert('faild to get current location')
     )
