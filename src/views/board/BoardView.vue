@@ -3,12 +3,14 @@ import {defineComponent} from 'vue'
 import BoardReadComp from "@/components/board/BoardReadComp.vue";
 import {mapActions, mapState} from "vuex";
 import router from "@/router";
+import ReplyWriteComp from "@/components/board/reply/ReplyWriteComp.vue";
+import ReplyReadComp from "@/components/board/reply/ReplyReadComp.vue";
 
 const BoardModule = 'BoardModule'
 const AccountModule = 'AccountModule'
 export default defineComponent({
   name: "BoardView",
-  components: {BoardReadComp},
+  components: {ReplyReadComp, ReplyWriteComp, BoardReadComp},
   props: ['boardId'],
   methods: {
     ...mapActions(BoardModule, ['requestGetBoard', 'requestDeleteBoard']),
@@ -41,6 +43,8 @@ export default defineComponent({
 <template>
   <div>
     <board-read-comp :board="board"></board-read-comp>
+    <reply-read-comp></reply-read-comp>
+    <reply-write-comp :boardId="boardId"></reply-write-comp>
     <div v-if="board.writer?.id === accountId">
         <v-container>
         <v-row>

@@ -40,5 +40,30 @@ export default {
       .then((res)=> {
         context.commit(SET_BOARDS, res.data)
       })
+  },
+  async requestPostReply(context, payload) {
+    const {userToken} = context.rootState.AccountModule
+    console.log(userToken)
+    return axiosSpring.post("/board/reply/"+payload.boardId, payload, {headers: {Authorization: userToken}})
+      .catch(()=> alert('can not read board or post reply'))
+      .then((res)=>{
+        console.log(res);
+        context.commit(SET_BOARD, res.data);
+      })
+  },
+  requestDeleteReply(context, replyId) {
+    const {userToken} = context.rootState.AccountModule
+    console.log(userToken)
+    return axiosSpring.delete("/board/reply", {params: {replyId: replyId}, headers: {Authorization: userToken}})
+      .then((res) => {
+        context.commit(SET_BOARD, res.data);
+      })
+  },
+  requestPutReply(context, {replyId, content}) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.put("/board/reply", {content}, {params: {replyId: replyId}, headers: {Authorization: userToken}})
+      .then((res)=> {
+        context.commit(SET_BOARD, res.data)
+      })
   }
 }
