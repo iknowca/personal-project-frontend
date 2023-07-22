@@ -4,7 +4,7 @@
 
 <script>
 import {useRoute} from "vue-router";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 import router from "@/router";
 const AccountModule = "AccountModule"
 const AuthModule = "AuthModule"
@@ -27,6 +27,9 @@ export default {
         router.push('/')
       }
     }
+  },
+  computed: {
+    ...mapState(AccountModule, ['nickName'])
   },
   created() {
     this.setRedirectData()
