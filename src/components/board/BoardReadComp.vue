@@ -42,19 +42,19 @@ export default defineComponent({
 <template>
   <v-container>
     <v-card class="pa-4">
-      <v-card-text class="text-center">{{ board.board?.title }}</v-card-text>
+      <v-card-text class="text-center">{{ board?.title }}</v-card-text>
         <v-row>
             <v-col cols="1">
-        <v-avatar><v-img :src="board.board?.writer.profileImage"></v-img></v-avatar>
+        <v-avatar><v-img :src="board.writer?.profileImage"></v-img></v-avatar>
             </v-col>
             <v-col style="padding-left: 0">
-      <v-card-subtitle>{{ board.board?.writer.nickName }}</v-card-subtitle>
+      <v-card-subtitle>{{ board.writer?.nickName }}</v-card-subtitle>
       <v-card-subtitle>
         <v-row>
-          <v-col>{{ calcDiffTime(board.board?.createdDate) }}</v-col>
+          <v-col>{{ calcDiffTime(board?.createdDate) }}</v-col>
           <v-spacer></v-spacer>
-          <v-col v-if="board.board?.createdDate.slice(0, 18) !== board.board?.modifiedDate.slice(0, 18)">
-            modified: {{ calcDiffTime(board.board?.modifiedDate) }}
+          <v-col v-if="board.createdDate?.slice(0, 18) !== board?.modifiedDate?.slice(0, 18)">
+            modified: {{ calcDiffTime(board?.modifiedDate) }}
           </v-col>
         </v-row>
       </v-card-subtitle>
@@ -64,15 +64,15 @@ export default defineComponent({
       <v-carousel
 
           cycle progress show-arrows="hover"
-          v-if="!board.boardContent?.imgPathList.length==0"
+          v-if="!board.content?.imgPathList.length==0"
       >
         <v-carousel-item
-            v-for="(img, i) in board.boardContent?.imgPathList" :key=i>
+            v-for="(img, i) in board.content?.imgPathList" :key=i>
           <v-img min-width="500px" :src="'https://vue-s3-test-37373.s3.ap-northeast-2.amazonaws.com/'+img.imgPath" style="aspect-ratio: auto"></v-img>
         </v-carousel-item>
       </v-carousel>
 
-      <v-card-text>{{ board.boardContent?.stringContent }}</v-card-text>
+      <v-card-text>{{ board.content?.stringContent }}</v-card-text>
     </v-card>
   </v-container>
 </template>

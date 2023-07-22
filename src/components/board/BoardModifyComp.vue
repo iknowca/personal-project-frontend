@@ -27,18 +27,18 @@ export default {
   },
   data() {
     return {
-      title: this.board.board?.title,
-      stringContent: this.board.boardContent?.stringContent,
+      title: this.board?.title,
+      stringContent: this.board.content?.stringContent,
       area: ['current area', 'home area', 'working area'],
     }
   },
   methods: {
     goToHome() {
-      router.push({name:'BoardView', props: {boardId: this.board.board?.id}})
+      router.push({name:'BoardView', props: {boardId: this.board?.id}})
     },
     async submit() {
-      await this.requestPutBoard({title: this.title, stringContent: this.stringContent, boardId: this.board.board?.id, userToken: this.userToken})
-      router.push({name:'BoardView', props: {boardId: this.board.board?.id}})
+      await this.requestPutBoard({title: this.title, stringContent: this.stringContent, boardId: this.board?.id, userToken: this.userToken})
+      router.push({name:'BoardView', props: {boardId: this.board?.id}})
 
     },
     ...mapActions(BoardModule, ['requestPutBoard'])

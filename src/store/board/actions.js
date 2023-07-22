@@ -9,7 +9,7 @@ export default {
       .catch(()=>alert(payload))
   },
   requestBoardList(context) {
-    axiosSpring.get('/board/boards')
+    axiosSpring.get('/board/list')
       .then((res)=>{
         context.commit(SET_BOARDS, res.data)
       })
@@ -18,6 +18,7 @@ export default {
   requestGetBoard(context, payload) {
     axiosSpring.get('/board/'+payload)
       .then((res)=> {
+        console.log(res.data)
         context.commit(SET_BOARD, res.data)
       })
       .catch(()=>alert('can not read board:' + payload))
@@ -35,7 +36,7 @@ export default {
   },
   requestBoardListByUserId(context, userId) {
     const {userToken} = context.rootState.AccountModule
-    return axiosSpring.get('/board/boards/'+userId, { headers: {Authorization: userToken}})
+    return axiosSpring.get('/board/list/'+userId, { headers: {Authorization: userToken}})
       .then((res)=> {
         context.commit(SET_BOARDS, res.data)
       })

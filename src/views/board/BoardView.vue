@@ -41,7 +41,7 @@ export default defineComponent({
 <template>
   <div>
     <board-read-comp :board="board"></board-read-comp>
-    <div v-if="board.board?.writer.id === accountId">
+    <div v-if="board.writer?.id === accountId">
         <v-container>
         <v-row>
         <v-btn @click="goToList">list</v-btn>
