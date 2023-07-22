@@ -19,7 +19,6 @@
 
 
 import {mapActions, mapState} from "vuex";
-import CurrentAreaModal from "@/components/map/CurrentAreaModal.vue";
 
 const MapModule = 'MapModule'
 export default {
@@ -53,11 +52,13 @@ export default {
         await locationButton.addEventListener("click",
           () => {
               this.getCurrentLocation(this.map)
-
           }
         )
 
-
+        const currentArea = document.createElement("div")
+        currentArea.textContent="abc"
+        // eslint-disable-next-line no-undef
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(currentArea)
     },
 
     ...mapActions(MapModule, ['getCurrentLocation'])
