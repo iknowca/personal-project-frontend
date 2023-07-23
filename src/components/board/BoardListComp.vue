@@ -31,7 +31,7 @@ export default defineComponent({
         <v-list-item
                 v-for="board in this.boards"
                 :key="board.id"
-                :title="board.title"
+                :title="board.title+ (board.numReplys?' ['+board.numReplys+']': '' )"
         :subtitle="board.writer.nickName +' - '+ calcDiffTime(board.createdDate)"
         @click="readBoard(board.id)">
         </v-list-item>

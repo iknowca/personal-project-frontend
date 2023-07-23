@@ -42,7 +42,7 @@ export default defineComponent({
 <template>
   <v-container>
     <v-card class="pa-4">
-      <v-card-text class="text-center">{{ board?.title }}</v-card-text>
+      <v-card-text class="text-center">{{ board.title+ (board.numReplys?' ['+board.numReplys+']': '' )}}</v-card-text>
         <v-row>
             <v-col cols="1">
         <v-avatar><v-img :src="board.writer?.profileImage"></v-img></v-avatar>
