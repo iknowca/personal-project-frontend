@@ -32,7 +32,7 @@ export default defineComponent({
     this.requestBoardListWithPage({page: this.page, size: this.size})
   },
   computed: {
-    ...mapState(BoardModule, ['page'])
+    ...mapState(BoardModule, ['page', 'boards'])
   }
 })
 </script>
@@ -45,8 +45,8 @@ export default defineComponent({
     <board-list-comp></board-list-comp>
     <v-row>
       <v-btn @click="beforePage" :disabled="page?false:true">{{ "<" }}</v-btn>
-      <v-card-title>{{ page }}</v-card-title>
-      <v-btn @click="nextPage"> {{ ">" }}</v-btn>
+      <v-card-title>{{ page+1 }}</v-card-title>
+      <v-btn @click="nextPage" :disabled="boards.length<size?true: false"> {{ ">" }}</v-btn>
 
     </v-row>
   </v-container>
