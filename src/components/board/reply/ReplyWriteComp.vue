@@ -29,7 +29,7 @@ export default {
         .then(()=> {
           router.push({name: 'BoardView', params: {boardId: this.boardId}})
         })
-
+      this.content= ''
     }
   }
 }
