@@ -15,6 +15,14 @@ export default {
       })
       .catch(()=>alert('can not read boards list'))
   },
+  requestBoardListWithPage(context, pageable){
+    axiosSpring.get('/board/list', {params: pageable})
+      .then((res)=> {
+        context.commit(SET_BOARDS, res.data)
+      })
+      .catch(()=>alert('can not read board list'))
+  }
+  ,
   requestGetBoard(context, payload) {
     axiosSpring.get('/board/'+payload)
       .then((res)=> {
@@ -43,7 +51,6 @@ export default {
   },
   async requestPostReply(context, payload) {
     const {userToken} = context.rootState.AccountModule
-    console.log(userToken)
     return axiosSpring.post("/board/reply/"+payload.boardId, payload, {headers: {Authorization: userToken}})
       .catch(()=> alert('can not read board or post reply'))
       .then((res)=>{
@@ -53,7 +60,6 @@ export default {
   },
   requestDeleteReply(context, replyId) {
     const {userToken} = context.rootState.AccountModule
-    console.log(userToken)
     return axiosSpring.delete("/board/reply", {params: {replyId: replyId}, headers: {Authorization: userToken}})
       .then((res) => {
         context.commit(SET_BOARD, res.data);

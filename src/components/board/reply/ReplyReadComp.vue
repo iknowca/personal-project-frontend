@@ -10,12 +10,13 @@
             v-model="reply.content"
         >
         </v-text-field>
-        <div>
-        </div>
-        <div>
-          <v-avatar size="20px"><v-img :src="reply.writer.profileImage"></v-img></v-avatar>
-          {{ reply.writer.nickName }}
-        </div>
+<!--        <div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <v-avatar size="20px"><v-img :src="reply.writer.profileImage"></v-img></v-avatar>-->
+<!--          {{ reply.writer.nickName }}-->
+<!--        </div>-->
+        <account-badge-comp :writer="reply.writer" :createdDate="reply.createdDate"></account-badge-comp>
       </v-container>
     </v-card>
   </v-container>
@@ -23,9 +24,11 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
+import AccountBadgeComp from "@/components/account/AccountBadgeComp.vue";
 
 export default {
   name: "ReplyReadComp",
+  components: {AccountBadgeComp},
   computed: {
     ...mapState("BoardModule", ["board"]),
     ...mapState("AccountModule", ["accountId"])
