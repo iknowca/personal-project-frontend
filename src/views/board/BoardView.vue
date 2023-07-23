@@ -45,13 +45,15 @@ export default defineComponent({
     <board-read-comp :board="board"></board-read-comp>
     <reply-read-comp></reply-read-comp>
     <reply-write-comp :boardId="boardId"></reply-write-comp>
-    <div v-if="board.writer?.id === accountId">
+    <div >
         <v-container>
         <v-row>
         <v-btn @click="goToList">list</v-btn>
 <v-spacer></v-spacer>
+          <div v-if="board.writer?.id === accountId">
       <v-btn @click="goToModify">modify</v-btn>
       <v-btn @click="requestDelete">delete</v-btn>
+          </div>
         </v-row>
         </v-container>
     </div>

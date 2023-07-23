@@ -1,5 +1,5 @@
 export default {
   boards: [],
   board: {},
-  replys: [],
+  page: 0,
 }

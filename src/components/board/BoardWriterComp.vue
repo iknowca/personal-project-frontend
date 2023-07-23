@@ -10,7 +10,7 @@
       <v-container>
         <v-row>
           <v-col cols="4"></v-col>
-          <v-col cols="2" @click="goToHome" class="center"><v-btn>cancel</v-btn></v-col>
+          <v-col cols="2" @click="goToBack" class="center"><v-btn>cancel</v-btn></v-col>
           <v-col cols="2" @click="submit"><v-btn>submit</v-btn></v-col>
           <v-col cols="4"></v-col>
         </v-row>
@@ -56,8 +56,8 @@ export default {
 
     },
     ...mapActions(BoardModule, ['requestPostBoard']),
-    goToHome() {
-      router.push('/')
+    goToBack() {
+      router.go(-1)
     },
     s3FileUpload() {
       this.s3Config()

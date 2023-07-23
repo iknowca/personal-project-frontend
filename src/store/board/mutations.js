@@ -1,4 +1,4 @@
-import {SET_BOARD, SET_BOARDS} from "@/store/board/mutation_types";
+import {SET_BOARD, SET_BOARDS, SET_PAGE} from "@/store/board/mutation_types";
 
 export default {
   [SET_BOARDS](state, receiveData) {
@@ -6,5 +6,8 @@ export default {
   },
   [SET_BOARD](state, receiveData) {
     state.board = receiveData;
+  },
+  [SET_PAGE](state, receiveData) {
+    state.page = receiveData
   }
 }
