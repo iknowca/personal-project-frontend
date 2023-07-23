@@ -19,11 +19,11 @@ export default defineComponent({
       router.push('/write-view')
     },
     nextPage() {
-      this.SET_PAGE(++this.page)
+      this.SET_PAGE(this.page+1)
       this.requestBoardListWithPage({page: this.page, size: this.size})
     },
     beforePage() {
-      this.SET_PAGE(--this.page)
+      this.SET_PAGE(this.page-1)
       this.requestBoardListWithPage({page: this.page, size: this.size})
     },
     ...mapMutations(BoardModule, ['SET_PAGE'])
