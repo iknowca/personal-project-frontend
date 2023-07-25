@@ -1,5 +1,6 @@
 import env from "../../../env";
 import {SET_CURRENT_AREA, SET_CURRENT_LOCATION} from "@/store/map/mutation_types";
+import axios from "axios";
 
 export default {
   requestMap() {
@@ -50,9 +51,47 @@ export default {
             context.commit(SET_CURRENT_AREA, currentLocationObj)
             map.setCenter(pos)
           })
-          .catch(()=>{console.log('geocode error')})
+          .catch(() => {
+            console.log('geocode error')
+          })
 
-      }, ()=>alert('faild to get current location')
+      }, () => alert('faild to get current location')
     )
+  },
+
+  async getCurrentArea(context) {
+    return navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        context.commit(SET_CURRENT_LOCATION, pos)
+
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=" + env.api.MAP_API_KEY + "&result_type=street_address&language=ko")
+          .then(res => {
+              console.log(res.data.results[0])
+              const currentLocationObj = {
+                dong: res.data.results[0].address_components[1].long_name,
+                gu: res.data.results[0].address_components[2].long_name,
+                si: res.data.results[0].address_components[3].long_name,
+                d_o: res.data.results[0].address_components[4].long_name,
+                lat: pos.lat,
+                lng: pos.lng
+              }
+              if(currentLocationObj.d_o==="서울특별시") {
+                currentLocationObj.d_o = "경기도"
+              }
+              context.commit(SET_CURRENT_AREA, currentLocationObj)
+
+
+            }
+          )
+
+      }
+    )
+  },
+  getAreaBoard(context, payload) {
+
   }
 }

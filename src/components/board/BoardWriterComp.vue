@@ -1,17 +1,32 @@
 <template>
   <v-container>
     <v-card class="pa-7">
-      <v-select style="width: 200px" :items="area">
-      </v-select>
+      <v-row class="pa-4">
+        <v-card>
+          <v-card-text>{{ currentArea ? currentArea.dong : " 글을 쓰기 위해서 새로 지역을 가져와주세요." }}</v-card-text>
+        </v-card>
+        <v-spacer></v-spacer>
+        <v-btn :loading="false" text class="pa-0" @click="getCurrentArea">
+          <v-card-text>get Location</v-card-text>
+        </v-btn>
+      </v-row>
       <v-text-field label="title" v-model="title"></v-text-field>
       <v-textarea label="content" v-model="stringContent"></v-textarea>
       <v-file-input multiple v-model="files" @change="previewImage" chips accept="image/png, image/jpg, image/jpeg"/>
-      <v-row><v-col v-for="(url, i) in previewImages" :key=i class="xs12 sm6 md4 lg3 xl2 xxl1"><v-img :src="url"></v-img></v-col></v-row>
+      <v-row>
+        <v-col v-for="(url, i) in previewImages" :key=i class="xs12 sm6 md4 lg3 xl2 xxl1">
+          <v-img :src="url"></v-img>
+        </v-col>
+      </v-row>
       <v-container>
         <v-row>
           <v-col cols="4"></v-col>
-          <v-col cols="2" @click="goToBack" class="center"><v-btn>cancel</v-btn></v-col>
-          <v-col cols="2" @click="submit"><v-btn>submit</v-btn></v-col>
+          <v-col cols="2" @click="goToBack" class="center">
+            <v-btn>cancel</v-btn>
+          </v-col>
+          <v-col cols="2" @click="submit">
+            <v-btn>submit</v-btn>
+          </v-col>
           <v-col cols="4"></v-col>
         </v-row>
       </v-container>
@@ -33,7 +48,6 @@ export default {
     return {
       title: '',
       stringContent: '',
-      area: ['current area', 'home area', 'working area'],
       files: [],
       awsBucketName: process.env.VUE_APP_S3_BUCKET_NAME,
       awsBucketRegion: process.env.VUE_APP_S3_REGION,
@@ -43,13 +57,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions("MapModule", ["getCurrentArea"]),
     async submit() {
       const payload = {
         userToken: this.userToken,
         title: this.title,
         stringContent: this.stringContent,
-        files: this.files.map((file) => this.nickName + "-" + file.name)
+        files: this.files.map((file) => this.nickName + "-" + file.name),
+        currentArea: this.currentArea
       }
+
       this.s3FileUpload()
       const boardId = await this.requestPostBoard(payload)
       router.push({name: 'BoardView', params: {boardId: boardId}})
@@ -90,7 +107,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(AccountModule, ["nickName", "userToken"])
+    ...mapState(AccountModule, ["nickName", "userToken"]),
+    ...mapState("MapModule", ["currentArea"])
   }
 }
 </script>
