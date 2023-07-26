@@ -42,7 +42,10 @@ export default defineComponent({
 <template>
   <v-container>
     <v-card class="pa-4">
+      <v-row>
+      <v-card-text class="position-fixed">{{board.location?.dong}}</v-card-text>
       <v-card-text class="text-center">{{ board.title+ (board.numReplys?' ['+board.numReplys+']': '' )}}</v-card-text>
+      </v-row>
         <v-row>
             <v-col cols="1">
         <v-avatar><v-img :src="board.writer?.profileImage"></v-img></v-avatar>
@@ -51,14 +54,17 @@ export default defineComponent({
       <v-card-subtitle>{{ board.writer?.nickName }}</v-card-subtitle>
       <v-card-subtitle>
         <v-row>
-          <v-col>{{ calcDiffTime(board?.createdDate) }}</v-col>
-          <v-spacer></v-spacer>
-          <v-col v-if="board.createdDate?.slice(0, 18) !== board?.modifiedDate?.slice(0, 18)">
-            modified: {{ calcDiffTime(board?.modifiedDate) }}
-          </v-col>
+          <v-col>{{ calcDiffTime(board?.createdDate) }} <span v-if="board.createdDate?.slice(0, 18) !== board?.modifiedDate?.slice(0, 18)">( modified: {{ calcDiffTime(board?.modifiedDate) }})</span></v-col>
+          <v-spacer>
+          </v-spacer>
+
         </v-row>
       </v-card-subtitle>
             </v-col>
+          <v-spacer></v-spacer>
+          <v-col>
+            <v-btn>pork!</v-btn>
+          </v-col>
         </v-row>
 
       <v-carousel
