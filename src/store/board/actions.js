@@ -1,5 +1,6 @@
 import axiosSpring from "@/utility/axios/axiosInst";
 import {SET_BOARD, SET_BOARDS} from "@/store/board/mutation_types";
+import router from "@/router";
 export default {
   async requestPostBoard(context, payload) {
     return await axiosSpring.post('/board', payload)
@@ -41,6 +42,9 @@ export default {
   requestDeleteBoard(context, boardId) {
     const {userToken} = context.rootState.AccountModule
     return axiosSpring.delete('/board', {params: {boardId: boardId}, headers: {Authorization: userToken, boardId:boardId}})
+      .catch(()=> {
+        router.push("SomeThingWrongView")
+      })
   },
   requestBoardListByUserId(context, userId) {
     const {userToken} = context.rootState.AccountModule
@@ -48,14 +52,19 @@ export default {
       .then((res)=> {
         context.commit(SET_BOARDS, res.data)
       })
+      .catch(()=> {
+        router.push("SomeThingWrongView")
+      })
   },
   async requestPostReply(context, payload) {
     const {userToken} = context.rootState.AccountModule
     return axiosSpring.post("/board/reply/"+payload.boardId, payload, {headers: {Authorization: userToken}})
-      .catch(()=> alert('can not read board or post reply'))
       .then((res)=>{
         console.log(res);
         context.commit(SET_BOARD, res.data);
+      })
+      .catch(()=> {
+        router.push("SomeThingWrongView")
       })
   },
   requestDeleteReply(context, replyId) {
@@ -64,12 +73,28 @@ export default {
       .then((res) => {
         context.commit(SET_BOARD, res.data);
       })
+      .catch(()=> {
+        router.push("SomeThingWrongView")
+      })
   },
   requestPutReply(context, {replyId, content}) {
     const {userToken} = context.rootState.AccountModule
     return axiosSpring.put("/board/reply", {content}, {params: {replyId: replyId}, headers: {Authorization: userToken}})
       .then((res)=> {
         context.commit(SET_BOARD, res.data)
+      })
+      .catch(()=> {
+        router.push("SomeThingWrongView")
+      })
+  },
+  requestGetBoardWithLocation(context, params) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.get("/board/list", {params: params, headers: {Authorization: userToken}})
+      .then((res) => {
+        context.commit(SET_BOARDS, res.data)
+      })
+      .catch(() => {
+        router.push("SomeThingWrongView")
       })
   }
 }

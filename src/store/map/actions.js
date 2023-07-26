@@ -12,7 +12,7 @@ export default {
         // eslint-disable-next-line no-async-promise-executor
         u = () => h || (h = new Promise(async (f, n) => {
           await (a = m.createElement("script"));
-          e.set("libraries", [...r] + "");
+          e.set("libraries", [...r, 'mpas', 'marker'] + "");
           for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
           e.set("callback", c + ".maps." + q);
           a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
@@ -47,7 +47,6 @@ export default {
             {
               currentLocationObj.d_o = "경기도";
             }
-            console.log(currentLocationObj)
             context.commit(SET_CURRENT_AREA, currentLocationObj)
             map.setCenter(pos)
           })
@@ -70,7 +69,6 @@ export default {
 
         axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=" + env.api.MAP_API_KEY + "&result_type=street_address&language=ko")
           .then(res => {
-              console.log(res.data.results[0])
               const currentLocationObj = {
                 dong: res.data.results[0].address_components[1].long_name,
                 gu: res.data.results[0].address_components[2].long_name,
@@ -91,7 +89,4 @@ export default {
       }
     )
   },
-  getAreaBoard(context, payload) {
-
-  }
 }

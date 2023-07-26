@@ -27,7 +27,7 @@ export default defineComponent({
         })
     },
     goToList() {
-      router.push('/board-list-view')
+      router.go(-1)
     }
   },
   beforeMount() {
