@@ -2,6 +2,7 @@
 import {defineComponent} from 'vue'
 import {calcDiffTime} from "../../utility/dateCalc/dateCalc";
 import AWS from "aws-sdk";
+import {mapActions, mapState} from "vuex";
 
 export default defineComponent({
   name: "BoardReadComp",
@@ -34,8 +35,23 @@ export default defineComponent({
     },
     getS3Files() {
       this.s3Config()
+    },
+    ...mapActions("BoardModule", ["requestForkToSpring", "requestCancelForkToSpring"]),
+    requestFork() {
+
+      if(this.isFork){
+        this.requestCancelForkToSpring(this.board.id)
+      }else {
+        this.requestForkToSpring(this.board.id)
+      }
     }
   },
+  computed: {
+    ...mapState("AccountModule", ["accountId"]),
+    isFork() {
+      return this.board.forkUserList?.userIdList.includes(this.accountId)
+    },
+  }
 })
 </script>
 
@@ -63,7 +79,7 @@ export default defineComponent({
             </v-col>
           <v-spacer></v-spacer>
           <v-col>
-            <v-btn>pork!</v-btn>
+           <span style="float: right">{{board?.numForks}}</span> <v-btn style="float: right" @click="requestFork">{{board.forkUserList?.userIdList.length}}  Fork  {{isFork?'!':''}}</v-btn>
           </v-col>
         </v-row>
 

@@ -3,6 +3,7 @@ import BoardListView from "@/views/board/BoardListView.vue";
 import BoardView from "@/views/board/BoardView.vue";
 import BoardModifyView from "@/views/board/BoardModifyView.vue";
 import UserBoardListView from "@/views/board/UserBoardListView.vue";
+import SomeThingWrongView from "@/views/SomeThingWrongView.vue";
 
 const BoardRoutes = [
   {
@@ -32,6 +33,11 @@ const BoardRoutes = [
     name: 'UserBoardListView',
     component: UserBoardListView,
     props: true
+  },
+  {
+    path: '/some-thing-wrong-view/',
+    name: 'SomeThingWrongView',
+    component: SomeThingWrongView
   }
 
 ]

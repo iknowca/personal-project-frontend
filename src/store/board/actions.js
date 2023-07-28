@@ -96,5 +96,26 @@ export default {
       .catch(() => {
         router.push("SomeThingWrongView")
       })
+  },
+  // eslint-disable-next-line no-empty-pattern
+  requestForkToSpring(context, boardId) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.post("/board/fork/"+boardId, {}, {headers: {Authorization: userToken}})
+      .then((res) => {
+        context.commit(SET_BOARD, res.data)
+      })
+      .catch(() => {
+        router.push("SomeThingWrongView")
+      })
+  },
+  requestCancelForkToSpring(context, boardId) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.delete("/board/fork/"+boardId,  {headers: {Authorization: userToken}})
+      .then((res) => {
+        context.commit(SET_BOARD, res.data)
+      })
+      .catch(() => {
+        router.push("SomeThingWrongView")
+      })
   }
 }
