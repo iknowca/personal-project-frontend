@@ -1,6 +1,6 @@
 import {
   SET_ACCOUNT_ID,
-  SET_LOGIN_STATE, SET_NICKNAME, SET_PROFILE_IMG, SET_USERTOKEN,
+  SET_LOGIN_STATE, SET_NICKNAME, SET_FOLLOW_LIST, SET_PROFILE_IMG, SET_USERTOKEN,
 } from "./mutation_types";
 
 export default {
@@ -18,5 +18,8 @@ export default {
   },
   [SET_PROFILE_IMG](state, receivedData) {
     state.profileImg = receivedData
+  },
+  [SET_FOLLOW_LIST](state, receivedData) {
+    state.followList = receivedData
   }
 }

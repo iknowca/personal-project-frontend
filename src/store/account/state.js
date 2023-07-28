@@ -3,5 +3,6 @@ export default {
   nickName: '',
   accountId: -1,
   userToken: '',
-  profileImg: ''
+  profileImg: '',
+  followList: []
 }
