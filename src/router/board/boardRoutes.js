@@ -4,6 +4,7 @@ import BoardView from "@/views/board/BoardView.vue";
 import BoardModifyView from "@/views/board/BoardModifyView.vue";
 import UserBoardListView from "@/views/board/UserBoardListView.vue";
 import SomeThingWrongView from "@/views/SomeThingWrongView.vue";
+import BoardForkView from "@/views/board/BoardForkView.vue";
 
 const BoardRoutes = [
   {
@@ -35,9 +36,14 @@ const BoardRoutes = [
     props: true
   },
   {
-    path: '/some-thing-wrong-view/',
+    path: '/some-thing-wrong-view',
     name: 'SomeThingWrongView',
     component: SomeThingWrongView
+  },
+  {
+    path: "/board-fork-view",
+    name: "BoardForkView",
+    component: BoardForkView
   }
 
 ]
