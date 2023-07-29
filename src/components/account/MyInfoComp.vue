@@ -4,11 +4,12 @@ import {mapState} from "vuex";
 import LogoutComp from "@/components/account/LogoutComp.vue";
 import MyBoardListButton from "@/components/account/MyBoardListButton.vue";
 import ForkBoardListComp from "@/components/account/ForkBoardListComp.vue";
+import FolloweeBoardListComp from "@/components/account/FolloweeBoardListComp.vue";
 
 const AccountModule = "AccountModule"
 export default defineComponent({
   name: "MyInfoComp",
-    components: {ForkBoardListComp, MyBoardListButton, LogoutComp},
+    components: {FolloweeBoardListComp, ForkBoardListComp, MyBoardListButton, LogoutComp},
   computed: {
     ...mapState(AccountModule, ['profileImg', 'nickName', 'accountId'])
   },
@@ -30,6 +31,7 @@ export default defineComponent({
         </v-card>
         <my-board-list-button :account-id="accountId"></my-board-list-button>
         <ForkBoardListComp></ForkBoardListComp>
+        <FolloweeBoardListComp></FolloweeBoardListComp>
         <logout-comp></logout-comp>
     </v-card>
 </v-container>

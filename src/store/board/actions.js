@@ -125,5 +125,13 @@ export default {
         context.commit(SET_BOARDS, res.data)
       })
 
-  }
+  },
+  requestBoardListByFollowList(context) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.get("/board/follow/list",  {headers: {Authorization: userToken}})
+      .then((res)=> {
+        context.commit(SET_BOARDS, res.data)
+      })
+
+  },
 }

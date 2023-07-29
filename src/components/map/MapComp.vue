@@ -61,6 +61,8 @@ export default {
           }
         )
         this.map.addListener("zoom_changed", this.getBoard)
+        this.map.setZoom(16)
+
     },
       async getBoard() {
           this.DELETE_ALL_MARKERS()
@@ -78,7 +80,7 @@ export default {
               // eslint-disable-next-line no-undef
               let marker = new google.maps.Marker({
                   // eslint-disable-next-line no-undef
-                  position: new google.maps.LatLng(board.location.lat, board.location.lng),
+                  position: new google.maps.LatLng(board.location?.lat, board.location?.lng),
                   title: board.title,
                   optimized: false,
                   map: this.map,

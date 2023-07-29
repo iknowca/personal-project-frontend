@@ -5,6 +5,7 @@ import BoardModifyView from "@/views/board/BoardModifyView.vue";
 import UserBoardListView from "@/views/board/UserBoardListView.vue";
 import SomeThingWrongView from "@/views/SomeThingWrongView.vue";
 import BoardForkView from "@/views/board/BoardForkView.vue";
+import BoardFollowView from "@/views/board/BoardFollowView.vue";
 
 const BoardRoutes = [
   {
@@ -44,6 +45,11 @@ const BoardRoutes = [
     path: "/board-fork-view",
     name: "BoardForkView",
     component: BoardForkView
+  },
+  {
+    path: "/board-follow-view",
+    name: "BoardFollowView",
+    component: BoardFollowView
   }
 
 ]
