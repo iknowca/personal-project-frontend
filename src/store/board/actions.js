@@ -117,5 +117,13 @@ export default {
       .catch(() => {
         router.push("SomeThingWrongView")
       })
+  },
+  requestBoardListByForkList(context) {
+    const {userToken} = context.rootState.AccountModule
+    return axiosSpring.get("/board/fork/list",  {headers: {Authorization: userToken}})
+      .then((res)=> {
+        context.commit(SET_BOARDS, res.data)
+      })
+
   }
 }

@@ -3,11 +3,12 @@ import {defineComponent} from 'vue'
 import {mapState} from "vuex";
 import LogoutComp from "@/components/account/LogoutComp.vue";
 import MyBoardListButton from "@/components/account/MyBoardListButton.vue";
+import ForkBoardListComp from "@/components/account/ForkBoardListComp.vue";
 
 const AccountModule = "AccountModule"
 export default defineComponent({
   name: "MyInfoComp",
-    components: {MyBoardListButton, LogoutComp},
+    components: {ForkBoardListComp, MyBoardListButton, LogoutComp},
   computed: {
     ...mapState(AccountModule, ['profileImg', 'nickName', 'accountId'])
   },
@@ -28,6 +29,7 @@ export default defineComponent({
             <v-card-title style="float: right">{{nickName}}</v-card-title>
         </v-card>
         <my-board-list-button :account-id="accountId"></my-board-list-button>
+        <ForkBoardListComp></ForkBoardListComp>
         <logout-comp></logout-comp>
     </v-card>
 </v-container>
