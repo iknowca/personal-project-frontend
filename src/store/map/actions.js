@@ -77,7 +77,8 @@ export default {
                 lat: pos.lat,
                 lng: pos.lng
               }
-              if(currentLocationObj.d_o==="서울특별시") {
+              if(currentLocationObj.si==="서울특별시") {
+                console.log('a')
                 currentLocationObj.d_o = "경기도"
               }
               context.commit(SET_CURRENT_AREA, currentLocationObj)
