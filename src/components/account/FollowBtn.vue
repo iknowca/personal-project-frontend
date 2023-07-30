@@ -1,5 +1,9 @@
 <template>
-  <v-btn @click="requestFollow" class="float-right">{{isFollow?"cancel follow": "follow"}}</v-btn>
+  <v-btn @click="requestFollow" class="float-right" variant="Plain">
+    follow
+    <v-img v-if="isFollow" :src="require('@/assets/follow.png')" width="30px"></v-img>
+    <v-img v-else :src="require('@/assets/unfollow.png')" width="30px"></v-img>
+  </v-btn>
 </template>
 <script>
 import {mapActions, mapState} from "vuex";

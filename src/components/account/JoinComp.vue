@@ -11,14 +11,10 @@
             <v-img :src='require("@/assets/logo.png")' height="20vh"></v-img>
           </div>
           <v-container style="width:320px;padding: 0">
-            <v-card @click="joinWithKakao" class="ma-4">
-              <v-img :src="kakaoLoginImg"/>
-            </v-card>
+              <v-img @click="joinWithKakao" :src="kakaoLoginImg" class="ma-2"/>
           </v-container>
           <v-container style="width:320px;padding: 0;">
-            <v-card @click="joinWithGoogle" class="ma-4">
-              <v-img :src="googleLoginImg"></v-img>
-            </v-card>
+              <v-img @click="joinWithGoogle" :src="googleLoginImg" class="ma-2"></v-img>
           </v-container>
         </v-col>
       </v-row>

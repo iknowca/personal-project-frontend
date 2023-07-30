@@ -21,9 +21,11 @@
 import {mapActions, mapMutations, mapState} from "vuex";
 // eslint-disable-next-line no-unused-vars
 import router from "@/router";
+import {toRaw} from "vue";
+import {calcDiffTime} from "@/utility/dateCalc/dateCalc";
 const MapModule = 'MapModule'
 const BoardModule = "BoardModule"
-// import {EventBus} from "@/plugins/EventBus";
+var iconBase = 'https://maps.google.com/mapfiles/kml/pushpin/';
 export default {
   name: "MapComp",
   data() {
@@ -60,6 +62,18 @@ export default {
               this.getCurrentLocation(this.map)
           }
         )
+
+        const writerButton = document.createElement("button")
+        writerButton.textContent = "write";
+        writerButton.className = 'custom-map-control-button bitbit'
+        // eslint-disable-next-line no-undef
+        this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(writerButton);
+        await writerButton.addEventListener("click",
+          () => {
+              router.push('/write-view')
+          }
+        )
+
         this.map.addListener("zoom_changed", this.getBoard)
         this.map.setZoom(16)
 
@@ -85,8 +99,12 @@ export default {
                   optimized: false,
                   map: this.map,
                   draggable: true,
+                  // eslint-disable-next-line no-undef
+                  icon: iconBase + "ylw-pushpin.png"
               })
-              const contentString = '<div>'+board.title+'</div>'
+              board = toRaw(board)
+              console.log(board)
+              const contentString = '<div style="font-family: bitbit,serif; background-color: #F0c20A"><div style="float: left; margin-right: 5px"><img height="30px" src="'+board.writer.profileImage+'" alt=""></div><div style="float: right"><div>'+board.title+'</div><div>'+board.writer.nickName +' ( '+ calcDiffTime(new Date(board.createdDate)) +' )</div></div></div>'
               // eslint-disable-next-line no-undef
               const infowindow = new google.maps.InfoWindow({content: contentString, ariaLabel: "Uluru"})
               marker.addListener("mouseover", ()=> infowindow.open({anchor: marker, map: this.map}))

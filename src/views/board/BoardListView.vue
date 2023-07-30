@@ -42,7 +42,10 @@ export default defineComponent({
     <v-btn @click="goToWriteView">
       WRITE
     </v-btn>
+    <v-row>
     <board-list-comp></board-list-comp>
+    </v-row>
+
     <v-row>
       <v-btn @click="beforePage" :disabled="page?false:true">{{ "<" }}</v-btn>
       <v-card-title>{{ page+1 }}</v-card-title>

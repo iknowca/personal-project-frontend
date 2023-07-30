@@ -1,9 +1,10 @@
 <template>
   <v-app-bar>
     <v-btn @click="goHome">
+      <v-img :src="require('@/assets/logo.png')" width="30px"></v-img>
       FINE
     </v-btn>
-      <v-btn @click="goBoardListView">
+      <v-btn @click="goBoardListView" v-if="isLogin">
         BOARD
       </v-btn>
 <v-spacer></v-spacer>

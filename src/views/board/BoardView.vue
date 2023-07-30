@@ -48,11 +48,11 @@ export default defineComponent({
     <div >
         <v-container>
         <v-row>
-        <v-btn @click="goToList">list</v-btn>
+        <v-btn @click="goToList">list <v-img :src="require('@/assets/list.png')" width="30px"></v-img></v-btn>
 <v-spacer></v-spacer>
           <div v-if="board.writer?.id === accountId">
-      <v-btn @click="goToModify">modify</v-btn>
-      <v-btn @click="requestDelete">delete</v-btn>
+      <v-btn @click="goToModify">modify <v-img :src="require('@/assets/modify.png')" width="30px"></v-img></v-btn>
+      <v-btn @click="requestDelete">delete <v-img :src="require('@/assets/delete.png')" width="30px"></v-img></v-btn>
           </div>
         </v-row>
         </v-container>

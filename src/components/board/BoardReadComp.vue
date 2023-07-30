@@ -88,7 +88,11 @@ export default defineComponent({
             </v-col>
           <v-spacer></v-spacer>
           <v-col>
-           <span style="float: right">{{board?.numForks}}</span> <v-btn style="float: right" @click="requestFork">{{board.forkUserList?.userIdList.length}}  Fork  {{isFork?'!':''}}</v-btn>
+            <span style="float: right">{{ board?.numForks }}</span>
+            <v-btn style="float: right" variant="Plain" @click="requestFork">{{ board.forkUserList?.userIdList.length }}
+              <v-img v-if="isFork" :src="require('@/assets/fork.png')" width="40px"></v-img>
+              <v-img v-else :src="require('@/assets/unfork.png')" width="40px"></v-img>
+            </v-btn>
           </v-col>
         </v-row>
 

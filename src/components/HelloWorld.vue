@@ -23,7 +23,7 @@ export default {
 .body {
     width: 100vw;
     height: calc( 100vh - 64px );
-    background: #789e4f;
+    background: #F0c20A;
     -webkit-font-smoothing: antialiased;
     padding: 5vw;
     justify-content: center;
